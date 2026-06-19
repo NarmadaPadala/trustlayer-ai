@@ -21,6 +21,17 @@ uses only three specialist agents plus one orchestrator.
   decision, and recommended next steps.
 - Uses deterministic checks as a fallback when `OPENAI_API_KEY` is not set.
 
+## Tech Stack
+
+- **Python** - core application language
+- **Streamlit** - interactive web UI
+- **LangGraph** - agent workflow orchestration
+- **LangChain** - LLM integration layer
+- **OpenAI** - optional LLM-powered review
+- **Pydantic** - structured state and finding models
+- **Pandas** - findings table display
+- **Pytest** - validation and workflow tests
+
 ## Architecture
 
 ```mermaid
