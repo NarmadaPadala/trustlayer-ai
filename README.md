@@ -168,7 +168,7 @@ cp .env.example .env
 Then add your key:
 
 ```text
-OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_API_KEY=
 ```
 
 The app still runs without an API key using deterministic review checks.
