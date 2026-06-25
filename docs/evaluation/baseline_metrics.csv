@@ -1,0 +1,10 @@
+Metric,Metric Type,Formula / Source,Baseline Result,Threshold,Status,Notes
+Critical Finding Recall,Quality,Detected expected Critical/High findings divided by expected Critical/High findings,57.1% overall; 50.0% Critical security,>= 90% overall and 100% on Critical security cases,FAIL,First deterministic baseline missed seven advanced security cases.
+Finding Precision,Quality,Supported findings divided by total findings,100.0%,>= 85%,PASS,Approximation based on configured avoid-case false positives.
+Agent Routing Accuracy,Behavior,Correctly routed cases divided by total cases,85.0%,>= 90%,FAIL,Missed security issue classes reduced routing accuracy.
+Actionability Score,Quality / UX,Average automated actionability score,7.5,>= 8.0 average and no category below 7.0,FAIL,Missed cases had incomplete remediation guidance.
+Latency p95,Operational,95th percentile end-to-end latency from local baseline run,0.004 seconds,<= 30 seconds,PASS,Local deterministic run without remote LLM latency.
+Average Cost per Review,Operational,Average estimated cost per review from tracing metadata,$0.0000,<= $0.05,PASS,Deterministic fallback path had no API cost.
+Human Review Accuracy,Behavior / Safety,Critical cases correctly routed to human review,57.1%,100% for Critical cases,FAIL,Missed Critical security findings did not trigger escalation.
+Agent Completion Rate,Reliability,Completed agent runs divided by expected agent runs,100.0%,>= 98%,PASS,All deterministic agents completed.
+False Positive Rate,Quality,Avoid-case false positives divided by avoid-case checks,0.0%,<= 10%,PASS,No configured avoid-case false positive failures.

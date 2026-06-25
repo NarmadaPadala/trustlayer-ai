@@ -1,0 +1,10 @@
+Metric,Metric Type,Formula / Source,Baseline Result,Threshold,Status,Notes
+Critical Finding Recall,Quality,Detected expected Critical/High findings divided by expected Critical/High findings,,">= 90% overall and 100% on Critical security cases",,
+Finding Precision,Quality,Supported findings divided by total findings,,">= 85%",,
+Agent Routing Accuracy,Behavior,Findings assigned to expected agent divided by evaluated findings,,">= 90%",,
+Actionability Score,Quality / UX,Average LLM-as-judge actionability score,,">= 8.0 average and no category below 7.0",,
+Latency p95,Operational,95th percentile end-to-end latency from LangSmith traces,,"<= 30 seconds",,
+Average Cost per Review,Operational,Average estimated cost from LangSmith traces,,"<= $0.15",,
+Human Review Accuracy,Behavior,Critical cases with human_review_required=true divided by all Critical cases,,100%,,
+Agent Completion Rate,Operational,Cases where all three agents completed divided by all cases,,">= 98%",,
+False Positive Rate,Quality,Unsupported findings divided by total findings,,"<= 15%",,

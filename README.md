@@ -1,161 +1,104 @@
 # TrustLayer AI
 
-TrustLayer AI is a production-minded, multi-agent code review app for Python
-source code. It evaluates code before deployment for security, reliability, and
-test coverage concerns, then generates a prioritized review report with a
-human-in-the-loop escalation when Critical issues are found.
+**Production-style multi-agent code review system with AI evaluation, observability, and failure analysis.**
 
-The app follows the MINT framework: Minimal Intelligence Necessary Tools. It
-uses only three specialist agents plus one orchestrator.
+TrustLayer AI reviews Python code before deployment and flags security vulnerabilities, reliability risks, and test coverage gaps. The project is packaged as an AI engineering portfolio case study: agent workflow design, LangSmith-ready tracing, a golden evaluation dataset, baseline measurement, failure analysis, targeted improvement, and re-evaluation.
 
-## What It Does
+## Portfolio Snapshot
 
-- Accepts a Python `.py` file upload or pasted Python source code.
-- Validates input before review.
-- Runs a LangGraph workflow with:
-  - Security Review Agent
-  - Reliability Review Agent
-  - Test Coverage Review Agent
-  - Orchestrator Agent
-- Produces an executive summary, risk score, findings table, human-review
-  decision, and recommended next steps.
-- Uses deterministic checks as a fallback when `OPENAI_API_KEY` is not set.
+| Area | Evidence |
+|---|---|
+| AI system | Multi-agent Python code reviewer with Orchestrator, Security, Reliability, and Test Coverage agents |
+| Evaluation | 40-case golden dataset covering happy paths, edge cases, known failures, and adversarial prompts |
+| Observability | LangSmith-ready traces for user input, orchestrator calls, agent calls, latency, tokens, cost, and escalation state |
+| Improvement loop | Baseline evaluation, failure clustering, Security Agent improvement, regression tests, and re-evaluation |
+| Production signals | Structured outputs, deterministic fallbacks, human escalation gate, prompt/version metadata, and cost/latency reporting |
 
-## Tech Stack
+## Results
 
-- **Python** - core application language
-- **Streamlit** - interactive web UI
-- **LangGraph** - agent workflow orchestration
-- **LangChain** - LLM integration layer
-- **OpenAI** - optional LLM-powered review
-- **Pydantic** - structured state and finding models
-- **Pandas** - findings table display
-- **Pytest** - validation and workflow tests
+| Evaluation Run | Pass | Conditional | Fail | Critical Recall | Routing Accuracy | Human Review |
+|---|---:|---:|---:|---:|---:|---:|
+| Baseline | 26 | 7 | 7 | 57.1% | 85.0% | 57.1% |
+| Improved | 33 | 7 | 0 | 100% | 100% | 100% |
 
-## Architecture
+The biggest failure cluster in the baseline run was missed critical security issues. After improving the Security Agent heuristics and prompt guidance, the same benchmark produced zero failed cases while preserving human review escalation for critical findings.
+
+## Visual Evidence
+
+- [Architecture diagram](docs/evaluation/visuals/trustlayer_architecture_diagram.svg)
+- [LangSmith-style evaluation dashboard](docs/evaluation/visuals/langsmith_evaluation_dashboard_enterprise.svg)
+- [Representative trace screenshot](docs/evaluation/visuals/langsmith_trace_screenshot_representative.svg)
+- [Evaluation results table](docs/evaluation/evaluation_results_table.md)
+
+> The dashboard SVG is a sanitized portfolio summary modeled after LangSmith concepts, not a raw LangSmith export with private workspace identifiers.
+
+## System Architecture
 
 ```mermaid
 flowchart TD
-    A[Streamlit User Input] --> B[Input Validation]
+    A[Python Code Input] --> B[Input Validation]
     B --> C[Orchestrator Agent]
-    C --> D[Security Review Agent]
-    D --> E[Reliability Review Agent]
-    E --> F[Test Coverage Review Agent]
-    F --> G[Aggregate Findings]
-    G --> H[Generate Report]
-    H --> I[Human Review Check]
-    I --> J[Final Findings Report]
-```
-
-## Agent Workflow
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant UI as Streamlit UI
-    participant O as Orchestrator
-    participant S as Security Agent
-    participant R as Reliability Agent
-    participant T as Test Coverage Agent
-
-    User->>UI: Upload .py file or paste code
-    UI->>UI: Validate file name, type, size, and content
-    UI->>O: Create ReviewState
-    O->>S: Run security review
-    S-->>O: Security findings
-    O->>R: Run reliability review
-    R-->>O: Reliability findings
-    O->>T: Run test coverage review
-    T-->>O: Testing findings
-    O->>O: Aggregate risk and human-review status
-    O-->>UI: Final state and report
-    UI-->>User: Progress, findings table, and next steps
-```
-
-## Project Structure
-
-```text
-trustlayer-ai/
-  app/
-    agents/
-      base.py
-      security_agent.py
-      reliability_agent.py
-      testing_agent.py
-    graph/
-      workflow.py
-    models/
-      state.py
-    ui/
-      streamlit_app.py
-    utils/
-      config.py
-      logging_config.py
-      prompts.py
-      risk.py
-      validation.py
-  sample_files/
-    vulnerable_app.py
-    reliable_app.py
-    missing_tests_example.py
-  example_outputs/
-    sample_review_report.md
-  README.md
-  requirements.txt
-  .env.example
+    C --> D[Security Agent]
+    C --> E[Reliability Agent]
+    C --> F[Test Coverage Agent]
+    D --> G[Aggregate Findings]
+    E --> G
+    F --> G
+    G --> H[Risk Scoring]
+    H --> I[Human Escalation Gate]
+    I --> J[Review Report]
+    G --> K[LangSmith Trace Metadata]
 ```
 
 ## Agent Responsibilities
 
-### Security Review Agent
+| Agent | Responsibility |
+|---|---|
+| Orchestrator Agent | Routes the review, manages state, aggregates findings, and generates the final report |
+| Security Agent | Detects critical security issues such as hardcoded secrets, SQL injection, unsafe eval, path traversal, unsafe deserialization, and shell injection |
+| Reliability Agent | Identifies error handling, validation, retry, fallback, null handling, and operational robustness risks |
+| Test Coverage Agent | Finds missing unit tests, integration tests, edge case tests, negative tests, and regression coverage gaps |
 
-Checks for hardcoded secrets, API key exposure, unsafe file uploads, SQL
-injection risks, authentication concerns, and sensitive data exposure.
+## Evaluation Framework
 
-### Reliability Review Agent
+The evaluation framework is designed to answer a production AI question:
 
-Checks for missing error handling, retries, fallbacks, null handling, empty input
-handling, data validation, file validation, database validation, and
-predictability concerns.
+> Can TrustLayer AI reliably identify important code risks and escalate critical issues before deployment?
 
-### Test Coverage Review Agent
+Core metrics:
 
-Checks for missing unit tests, integration tests, edge case tests, negative test
-scenarios, accessibility testing, browser compatibility testing, and user
-acceptance testing recommendations.
+- **Critical Finding Recall**: Did the system catch known critical vulnerabilities?
+- **Estimated Precision**: Were findings relevant and not noisy?
+- **Routing Accuracy**: Did the right agent handle the right issue type?
+- **Human Review Accuracy**: Did critical issues trigger escalation?
+- **Actionability**: Were recommendations specific enough for an engineer to act on?
+- **Latency and Cost**: Is the review practical for a developer workflow?
 
-### Orchestrator Agent
+Primary evaluation files:
 
-Maintains workflow state, executes agents, aggregates findings, generates the
-final report, and triggers human review when needed.
+- [Evaluation design](docs/evaluation/phase1_evaluation_design.md)
+- [Golden dataset documentation](docs/evaluation/phase2_golden_dataset_documentation.md)
+- [Golden dataset CSV](docs/evaluation/golden_dataset.csv)
+- [Evaluation execution workflow](docs/evaluation/phase4_evaluation_execution.md)
+- [Failure analysis](docs/evaluation/phase5_failure_analysis.md)
+- [Improvement plan](docs/evaluation/phase6_improvement_plan.md)
+- [Final evaluation report](docs/evaluation/phase7_evaluation_report.md)
 
-## State Management
+## LangSmith-Ready Observability
 
-`app/models/state.py` defines the Pydantic workflow state. The state is passed
-through every LangGraph node so each agent reads the same source code and appends
-structured findings.
+TrustLayer AI includes trace instrumentation for:
 
-- `file_name`
-- `source_code`
-- `completed_agents`
-- `findings`
-- `overall_risk_score`
-- `human_review_required`
-- `execution_status`
-- `timestamps`
+- User input metadata and privacy-safe source summaries
+- Orchestrator execution
+- Security, Reliability, and Test Coverage agent calls
+- Token usage, latency, and cost metadata
+- Prompt version, agent version, dataset version, and run identifiers
+- Human escalation decisions
+- Error and retry metadata
 
-The app also keeps a generated report and recoverable agent errors in state so
-the UI can display graceful fallback information during demos.
+See [LangSmith instrumentation guide](docs/evaluation/phase3_langsmith_instrumentation.md) and [LangSmith evidence checklist](docs/evaluation/langsmith_evidence_checklist.md).
 
-Each finding contains:
-
-- `Agent`
-- `Severity`
-- `Finding`
-- `Recommendation`
-- optional `line_reference`
-
-## Setup
+## Run Locally
 
 Create and activate a virtual environment:
 
@@ -170,89 +113,81 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Optional: configure OpenAI for deeper LLM review:
-
-```bash
-cp .env.example .env
-```
-
-Then add your key:
-
-```text
-OPENAI_API_KEY=
-```
-
-The app still runs without an API key using deterministic review checks.
-
-## Run Locally
+Run the Streamlit app:
 
 ```bash
 python3 -m streamlit run app/ui/streamlit_app.py
 ```
 
-Open the local URL printed by Streamlit.
+Run tests:
 
-## Try the Samples
-
-Upload one of these files:
-
-- `sample_files/vulnerable_app.py`
-- `sample_files/reliable_app.py`
-- `sample_files/missing_tests_example.py`
-
-An example report is included at:
-
-```text
-example_outputs/sample_review_report.md
+```bash
+pytest
 ```
 
-## Streamlit Community Cloud Deployment
+Run the golden dataset evaluation:
 
-1. Push this repository to GitHub.
-2. In Streamlit Community Cloud, create a new app from the repository.
-3. Set the main file path to:
-
-```text
-app/ui/streamlit_app.py
+```bash
+python3 scripts/evaluate_golden_dataset.py
 ```
 
-4. Add `OPENAI_API_KEY` in Streamlit secrets if you want LLM-backed review.
-5. Deploy.
-
-## Human-in-the-Loop Rule
-
-If any finding has severity `Critical`, TrustLayer AI sets:
+The evaluator writes the fresh local run to:
 
 ```text
-human_review_required = True
+docs/evaluation/latest_evaluation_results.csv
+docs/evaluation/latest_metrics.csv
 ```
 
-The UI and final report display a Human Review Status section explaining that a
-human approver should validate remediation before deployment when Critical
-findings are present.
+## Optional LangSmith Configuration
 
-## Risk Scoring
+Copy the example environment file:
 
-- Any Critical finding produces `Critical`.
-- Any High finding produces `High`.
-- Three or more Medium findings produce `High`.
-- Any Medium finding produces `Medium`.
-- Only Low findings, or no findings, produce `Low`.
+```bash
+cp .env.example .env
+```
 
-## Production Readiness Notes
+Set your own keys locally:
 
-This starter includes:
+```text
+OPENAI_API_KEY=
+LANGSMITH_API_KEY=
+LANGSMITH_TRACING=true
+LANGSMITH_PROJECT=trustlayer-ai-evaluation
+```
 
-- Structured Pydantic state.
-- LangGraph orchestration.
-- Agent-level deterministic fallback checks.
-- OpenAI structured output support.
-- Retry configuration for LLM calls and agent-node failures.
-- Graceful agent failure handling.
-- Logging.
-- Empty-code, unsupported-file, binary-content, and file-size validation.
-- Human-in-the-loop escalation.
-- Demo sample files and example report output.
+The app still runs without an API key using deterministic review checks.
 
-For a production deployment, add authentication, persistent audit logs, CI secret
-scanning, organization-specific policy rules, and tests around the workflow.
+## Repository Map
+
+```text
+app/
+  agents/                 # Orchestrator-facing specialist agents
+  graph/                  # LangGraph workflow and tracing instrumentation
+  models/                 # Structured Pydantic review state
+  ui/                     # Streamlit interface
+  utils/                  # Prompts, validation, risk scoring, tracing helpers
+docs/evaluation/          # Evaluation framework, results, evidence, visuals
+scripts/                  # Golden dataset evaluation runner
+tests/                    # Workflow, validation, risk, and regression tests
+sample_files/             # Demo Python files for manual review
+example_outputs/          # Example generated review report
+```
+
+## Why This Project Matters
+
+This project demonstrates production AI engineering skills beyond prompt building:
+
+- Designing measurable AI evaluation criteria
+- Building a representative golden dataset
+- Instrumenting a multi-agent workflow for observability
+- Measuring baseline behavior before making improvements
+- Clustering failures and prioritizing fixes
+- Adding regression tests for previously missed failure modes
+- Tracking latency, token usage, cost, and escalation behavior
+- Communicating AI system reliability to technical and non-technical reviewers
+
+## Current Limitations
+
+- The included dashboard is a sanitized portfolio artifact, not a raw LangSmith workspace export.
+- Precision and LLM-as-Judge scoring are represented as evaluation-ready fields; live judge runs require configured model credentials.
+- The deterministic evaluator is optimized for repeatable portfolio evidence, not a replacement for production monitoring.

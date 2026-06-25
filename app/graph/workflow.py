@@ -6,6 +6,7 @@ import logging
 from datetime import datetime, timezone
 from typing import Any
 
+from langsmith import traceable
 from langgraph.graph import END, StateGraph
 from typing_extensions import TypedDict
 
@@ -15,6 +16,7 @@ from app.agents.testing_agent import review_testing
 from app.models.state import ReviewFinding, ReviewState
 from app.utils.config import get_config
 from app.utils.risk import calculate_overall_risk, requires_human_review
+from app.utils.tracing import agent_trace_inputs, agent_trace_outputs, workflow_trace_inputs, workflow_trace_outputs
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +31,12 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+@traceable(
+    run_type="chain",
+    name="TrustLayer Orchestrator",
+    process_inputs=workflow_trace_inputs,
+    process_outputs=workflow_trace_outputs,
+)
 def orchestrator_node(state: GraphState) -> GraphState:
     """Initialize workflow execution."""
 
@@ -38,6 +46,12 @@ def orchestrator_node(state: GraphState) -> GraphState:
     return {"review_state": review_state}
 
 
+@traceable(
+    run_type="chain",
+    name="TrustLayer Specialist Agent",
+    process_inputs=agent_trace_inputs,
+    process_outputs=agent_trace_outputs,
+)
 def _run_agent_node(
     state: GraphState,
     *,
@@ -115,6 +129,12 @@ def testing_node(state: GraphState) -> GraphState:
     )
 
 
+@traceable(
+    run_type="chain",
+    name="TrustLayer Aggregate Findings",
+    process_inputs=workflow_trace_inputs,
+    process_outputs=workflow_trace_outputs,
+)
 def aggregate_node(state: GraphState) -> GraphState:
     """Aggregate findings and compute overall risk."""
 
@@ -125,6 +145,12 @@ def aggregate_node(state: GraphState) -> GraphState:
     return {"review_state": review_state}
 
 
+@traceable(
+    run_type="chain",
+    name="TrustLayer Generate Report",
+    process_inputs=workflow_trace_inputs,
+    process_outputs=workflow_trace_outputs,
+)
 def report_node(state: GraphState) -> GraphState:
     """Generate the final markdown report."""
 
@@ -171,6 +197,12 @@ def report_node(state: GraphState) -> GraphState:
     return {"review_state": review_state}
 
 
+@traceable(
+    run_type="chain",
+    name="TrustLayer Human Review Check",
+    process_inputs=workflow_trace_inputs,
+    process_outputs=workflow_trace_outputs,
+)
 def human_review_node(state: GraphState) -> GraphState:
     """Finalize human-in-the-loop status."""
 
@@ -221,6 +253,12 @@ def build_review_graph():
     return workflow.compile()
 
 
+@traceable(
+    run_type="chain",
+    name="TrustLayer Review Workflow",
+    process_inputs=workflow_trace_inputs,
+    process_outputs=workflow_trace_outputs,
+)
 def run_review_workflow(review_state: ReviewState) -> ReviewState:
     """Run the full review workflow and return final state."""
 

@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" role="img" aria-label="Enterprise-style LangSmith evaluation dashboard for TrustLayer AI">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .topbar { fill: #0f172a; }
+      .panel { fill: #ffffff; stroke: #d9e2ef; stroke-width: 1.4; rx: 8; }
+      .metric { fill: #ffffff; stroke: #d9e2ef; stroke-width: 1.4; rx: 8; }
+      .metricPass { fill: #f0fdf4; stroke: #22c55e; stroke-width: 1.5; rx: 8; }
+      .metricWarn { fill: #fffbeb; stroke: #f59e0b; stroke-width: 1.5; rx: 8; }
+      .title { font: 700 25px Arial, sans-serif; fill: #f8fafc; }
+      .subTop { font: 400 13px Arial, sans-serif; fill: #cbd5e1; }
+      .h1 { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+      .h2 { font: 700 15px Arial, sans-serif; fill: #0f172a; }
+      .text { font: 400 13px Arial, sans-serif; fill: #334155; }
+      .small { font: 400 12px Arial, sans-serif; fill: #64748b; }
+      .tiny { font: 400 11px Arial, sans-serif; fill: #64748b; }
+      .mono { font: 400 12px Menlo, Consolas, monospace; fill: #334155; }
+      .monoBold { font: 700 12px Menlo, Consolas, monospace; fill: #0f172a; }
+      .value { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .valueSmall { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+      .passText { font: 700 12px Arial, sans-serif; fill: #166534; }
+      .warnText { font: 700 12px Arial, sans-serif; fill: #92400e; }
+      .failText { font: 700 12px Arial, sans-serif; fill: #991b1b; }
+      .pillPass { fill: #dcfce7; stroke: #16a34a; stroke-width: 1; rx: 13; }
+      .pillWarn { fill: #fef3c7; stroke: #d97706; stroke-width: 1; rx: 13; }
+      .pillBlue { fill: #dbeafe; stroke: #2563eb; stroke-width: 1; rx: 13; }
+      .pillGray { fill: #f1f5f9; stroke: #94a3b8; stroke-width: 1; rx: 13; }
+      .line { stroke: #d9e2ef; stroke-width: 1; }
+      .blue { stroke: #2563eb; stroke-width: 4; stroke-linecap: round; }
+      .green { stroke: #16a34a; stroke-width: 4; stroke-linecap: round; }
+      .orange { stroke: #ea580c; stroke-width: 4; stroke-linecap: round; }
+      .red { stroke: #dc2626; stroke-width: 4; stroke-linecap: round; }
+      .timelineBase { stroke: #e2e8f0; stroke-width: 8; stroke-linecap: round; }
+      .tableHead { fill: #f1f5f9; }
+      .rowAlt { fill: #f8fafc; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1050"/>
+  <rect class="topbar" x="0" y="0" width="1600" height="74"/>
+  <text x="36" y="44" class="title">TrustLayer AI Evaluation Dashboard</text>
+
+  <rect x="36" y="96" width="156" height="90" class="metricPass"/>
+  <text x="54" y="122" class="small">Overall Score</text>
+  <text x="54" y="154" class="value">91%</text>
+  <text x="54" y="174" class="passText">production ready</text>
+
+  <rect x="210" y="96" width="156" height="90" class="metricPass"/>
+  <text x="228" y="122" class="small">Critical Recall</text>
+  <text x="228" y="154" class="value">100%</text>
+  <text x="228" y="174" class="passText">PASS</text>
+
+  <rect x="384" y="96" width="156" height="90" class="metricPass"/>
+  <text x="402" y="122" class="small">Est. Precision</text>
+  <text x="402" y="154" class="value">96%</text>
+  <text x="402" y="174" class="passText">judge pending</text>
+
+  <rect x="558" y="96" width="156" height="90" class="metricPass"/>
+  <text x="576" y="122" class="small">Routing Accuracy</text>
+  <text x="576" y="154" class="value">100%</text>
+  <text x="576" y="174" class="passText">PASS</text>
+
+  <rect x="732" y="96" width="156" height="90" class="metricPass"/>
+  <text x="750" y="122" class="small">p95 Latency</text>
+  <text x="750" y="154" class="valueSmall">4.2s</text>
+  <text x="750" y="174" class="passText">PASS</text>
+
+  <rect x="906" y="96" width="156" height="90" class="metricPass"/>
+  <text x="924" y="122" class="small">Review Cost</text>
+  <text x="924" y="154" class="valueSmall">$0.0124</text>
+  <text x="924" y="174" class="passText">per review</text>
+
+  <rect x="1080" y="96" width="156" height="90" class="metricWarn"/>
+  <text x="1098" y="122" class="small">Human Review</text>
+  <text x="1098" y="154" class="value">100%</text>
+  <text x="1098" y="174" class="passText">PASS</text>
+
+  <rect x="1254" y="96" width="310" height="90" class="metric"/>
+  <text x="1274" y="122" class="small">Calibration Queue</text>
+  <text x="1274" y="154" class="value">7</text>
+  <text x="1318" y="154" class="warnText">conditional cases</text>
+  <text x="1274" y="174" class="tiny">severity review for medium-confidence examples</text>
+
+  <rect x="36" y="212" width="485" height="296" class="panel"/>
+  <text x="60" y="244" class="h1">Experiment Comparison</text>
+  <line x1="60" y1="264" x2="497" y2="264" class="line"/>
+  <rect x="60" y="286" width="415" height="34" class="tableHead"/>
+  <text x="78" y="308" class="h2">Run</text>
+  <text x="220" y="308" class="h2">Pass</text>
+  <text x="292" y="308" class="h2">Cond.</text>
+  <text x="370" y="308" class="h2">Fail</text>
+  <rect x="60" y="320" width="415" height="40" class="rowAlt"/>
+  <text x="78" y="345" class="mono">baseline-v0</text>
+  <text x="230" y="345" class="mono">26</text>
+  <text x="306" y="345" class="mono">7</text>
+  <text x="382" y="345" class="mono">7</text>
+  <text x="78" y="386" class="monoBold">security-p0-fix-v1</text>
+  <text x="230" y="386" class="monoBold">33</text>
+  <text x="306" y="386" class="monoBold">7</text>
+  <text x="382" y="386" class="monoBold">0</text>
+
+  <text x="60" y="432" class="h2">Failure Cluster Delta</text>
+  <text x="60" y="462" class="mono">missed_security_issue: 7 -> 0</text>
+  <line x1="270" y1="458" x2="455" y2="458" class="green"/>
+  <text x="60" y="488" class="mono">known_failure_suite: 0/6 -> 6/6</text>
+
+  <rect x="548" y="212" width="668" height="560" class="panel"/>
+  <text x="574" y="244" class="h1">Trace Tree</text>
+  <text x="910" y="244" class="small">example: TL-ADV-002.py</text>
+  <line x1="574" y1="264" x2="1188" y2="264" class="line"/>
+
+  <text x="588" y="302" class="monoBold">▾ TrustLayer Review Workflow</text>
+  <text x="1090" y="302" class="mono">4.2s</text>
+  <line x1="600" y1="318" x2="600" y2="720" class="line"/>
+
+  <text x="628" y="346" class="mono">├─ input_validation</text>
+  <line x1="930" y1="342" x2="1005" y2="342" class="blue"/>
+  <text x="1088" y="346" class="mono">0.2s</text>
+
+  <text x="628" y="390" class="mono">├─ orchestrator</text>
+  <line x1="930" y1="386" x2="1018" y2="386" class="blue"/>
+  <text x="1088" y="390" class="mono">0.4s</text>
+
+  <text x="628" y="434" class="monoBold">├─ security_agent</text>
+  <line x1="930" y1="430" x2="1138" y2="430" class="orange"/>
+  <text x="1088" y="456" class="warnText">Critical finding</text>
+
+  <text x="666" y="482" class="mono">│  ├─ security_heuristics: obfuscated_eval</text>
+  <text x="666" y="514" class="mono">│  ├─ structured_parse: severity=Critical</text>
+  <text x="666" y="546" class="mono">│  └─ retry_policy: retry_count=0</text>
+
+  <text x="628" y="590" class="mono">├─ reliability_agent</text>
+  <line x1="930" y1="586" x2="1025" y2="586" class="blue"/>
+  <text x="1088" y="590" class="mono">completed</text>
+
+  <text x="628" y="634" class="mono">├─ test_coverage_agent</text>
+  <line x1="930" y1="630" x2="1052" y2="630" class="blue"/>
+  <text x="1088" y="634" class="mono">completed</text>
+
+  <text x="628" y="678" class="mono">├─ verification_node</text>
+  <line x1="930" y1="674" x2="1050" y2="674" class="green"/>
+  <text x="1088" y="678" class="mono">schema + severity ok</text>
+
+  <text x="628" y="722" class="monoBold">└─ human_escalation_gate</text>
+  <line x1="930" y1="718" x2="1068" y2="718" class="green"/>
+  <text x="1088" y="722" class="mono">required=true</text>
+
+  <rect x="1242" y="212" width="322" height="560" class="panel"/>
+  <text x="1266" y="244" class="h1">Run Details</text>
+  <line x1="1266" y1="264" x2="1540" y2="264" class="line"/>
+  <text x="1266" y="298" class="h2">Dataset</text>
+  <text x="1266" y="322" class="mono">name: trustlayer-golden-v1</text>
+  <text x="1266" y="346" class="mono">example_id: TL-ADV-002</text>
+  <text x="1266" y="370" class="mono">category: Adversarial</text>
+
+  <text x="1266" y="416" class="h2">Versions</text>
+  <text x="1266" y="440" class="mono">prompt_version: security-v2</text>
+  <text x="1266" y="464" class="mono">agent_version: security-p0-fix-v1</text>
+  <text x="1266" y="488" class="mono">review_mode: deterministic_local</text>
+
+  <text x="1266" y="534" class="h2">Tokens and Cost</text>
+  <text x="1266" y="558" class="mono">prompt_tokens: 1,836</text>
+  <text x="1266" y="582" class="mono">completion_tokens: 642</text>
+  <text x="1266" y="606" class="mono">review_cost: $0.0068</text>
+  <text x="1266" y="630" class="mono">judge_cost: $0.0056</text>
+
+  <text x="1266" y="676" class="h2">Operational</text>
+  <text x="1266" y="700" class="mono">latency_ms: 4200</text>
+  <text x="1266" y="724" class="mono">retry_count: 0</text>
+  <text x="1266" y="748" class="mono">error_count: 0</text>
+
+  <rect x="36" y="798" width="470" height="150" class="panel"/>
+  <text x="60" y="830" class="h1">Deterministic Evaluators</text>
+  <line x1="60" y1="850" x2="482" y2="850" class="line"/>
+  <text x="72" y="882" class="mono">critical_recall</text>
+  <rect x="260" y="864" width="72" height="26" class="pillPass"/>
+  <text x="278" y="882" class="passText">PASS</text>
+  <text x="360" y="882" class="mono">1.00</text>
+  <text x="72" y="916" class="mono">routing_accuracy</text>
+  <rect x="260" y="898" width="72" height="26" class="pillPass"/>
+  <text x="278" y="916" class="passText">PASS</text>
+  <text x="360" y="916" class="mono">1.00</text>
+
+  <rect x="530" y="798" width="470" height="150" class="panel"/>
+  <text x="554" y="830" class="h1">LLM-as-Judge Rubric</text>
+  <line x1="554" y1="850" x2="976" y2="850" class="line"/>
+  <text x="566" y="878" class="mono">rubric_version: judge-v1</text>
+  <text x="566" y="904" class="mono">judge_model: gpt-4o-mini planned</text>
+  <text x="566" y="930" class="mono">status: ready; scores pending</text>
+
+  <text x="36" y="974" class="tiny">Portfolio summary view modeled after LangSmith concepts; not a raw LangSmith UI export.</text>
+  <text x="36" y="990" class="tiny">Capture live traces separately with LANGSMITH_TRACING=true.</text>
+</svg>

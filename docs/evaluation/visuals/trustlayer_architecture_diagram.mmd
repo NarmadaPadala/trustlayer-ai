@@ -1,0 +1,26 @@
+flowchart TD
+    A["Developer submits Python code"] --> B["Streamlit Review UI"]
+    B --> C["Input Validation<br/>file type, size, empty input, binary content"]
+    C --> D["LangGraph Orchestrator Agent"]
+
+    D --> E["Security Review Agent<br/>secrets, SQL injection, eval, path traversal,<br/>deserialization, command injection"]
+    E --> F["Reliability Review Agent<br/>timeouts, retries, error handling,<br/>validation, database safety"]
+    F --> G["Test Coverage Review Agent<br/>unit tests, integration tests,<br/>edge cases, negative tests"]
+
+    G --> H["Aggregate Findings"]
+    H --> I["Risk Scoring<br/>Low / Medium / High / Critical"]
+    I --> J["Human Review Rule<br/>Critical finding -> human_review_required = true"]
+    J --> K["Final Review Report<br/>findings, recommendations, next steps"]
+
+    D -. "LangSmith trace" .-> L["Observability Layer"]
+    E -. "agent span" .-> L
+    F -. "agent span" .-> L
+    G -. "agent span" .-> L
+    H -. "metadata" .-> L
+    J -. "risk + human review status" .-> L
+
+    L --> M["Tracked Evidence<br/>latency, tokens, cost, file metadata,<br/>finding counts, severity counts, errors"]
+
+    N["40-Case Golden Dataset"] --> O["Evaluation Runner"]
+    O --> D
+    O --> P["Evaluation Results<br/>baseline + post-improvement metrics"]

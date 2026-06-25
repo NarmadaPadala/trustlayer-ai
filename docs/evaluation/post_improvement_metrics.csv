@@ -1,0 +1,10 @@
+Metric,Metric Type,Formula / Source,Baseline Result,Threshold,Status,Notes
+Critical Finding Recall,Quality,Detected expected Critical/High findings divided by expected Critical/High findings,100.0% overall; 100.0% Critical security,>= 90% overall and 100% on Critical security cases,PASS,Automated keyword baseline; use LLM-as-judge for final scoring.
+Finding Precision,Quality,Supported findings divided by total findings,100.0%,>= 85%,PASS,Approximation based on configured avoid-case false positives.
+Agent Routing Accuracy,Behavior,Correctly routed cases divided by total cases,100.0%,>= 90%,PASS,Case-level routing estimate.
+Actionability Score,Quality / UX,Average automated actionability score,8.0,>= 8.0 average and no category below 7.0,PASS,Use LLM-as-judge for final scoring.
+Latency p95,Operational,95th percentile end-to-end latency from local baseline run,0.005 seconds,<= 30 seconds,PASS,Local deterministic run without remote LLM latency unless OPENAI_API_KEY is set.
+Average Cost per Review,Operational,Average estimated cost from run,$0.0000,<= $0.15,PASS,Zero in deterministic mode without OpenAI calls.
+Human Review Accuracy,Behavior,Critical cases with human_review_required=true divided by all Critical cases,100.0%,100%,PASS,Based on current Critical severity outputs.
+Agent Completion Rate,Operational,Cases where all three agents completed divided by all cases,100.0%,>= 98%,PASS,Uses ReviewState.completed_agents.
+False Positive Rate,Quality,Unsupported findings divided by total findings,0.0%,<= 15%,PASS,Approximation based on configured avoid-case false positives.

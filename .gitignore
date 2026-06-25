@@ -1,20 +1,22 @@
 .DS_Store
+**/.DS_Store
+
 .env
-.envrc
 .venv/
-env/
 venv/
-ENV/
+
 __pycache__/
 *.py[cod]
-*.pyc
-*$py.class
 .pytest_cache/
+
 .mypy_cache/
 .ruff_cache/
-.coverage
-htmlcov/
-dist/
-build/
-*.egg-info/
-.streamlit/secrets.toml
+
+*.log
+
+# Local browser exports and saved GitHub page assets
+*.html
+*_files/
+
+# Generated local previews
+*.svg.png

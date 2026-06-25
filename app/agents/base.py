@@ -8,10 +8,12 @@ from collections.abc import Callable
 from typing import Optional
 
 from pydantic import ValidationError
+from langsmith import traceable
 
 from app.models.state import AgentReview, ReviewFinding
 from app.utils.config import get_config
 from app.utils.prompts import USER_REVIEW_PROMPT
+from app.utils.tracing import findings_trace_outputs, review_agent_trace_inputs
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +30,12 @@ def find_line(source_code: str, pattern: str) -> Optional[str]:
     return None
 
 
+@traceable(
+    run_type="chain",
+    name="TrustLayer Agent Review",
+    process_inputs=review_agent_trace_inputs,
+    process_outputs=findings_trace_outputs,
+)
 def run_review_agent(
     *,
     agent_name: str,
@@ -58,6 +66,7 @@ def run_review_agent(
         model=config.model_name,
         temperature=0,
         max_retries=config.agent_retry_attempts,
+        metadata={"ls_provider": "openai", "ls_model_name": config.model_name},
     )
     structured_model = model.with_structured_output(AgentReview)
     chain = prompt | structured_model
@@ -67,7 +76,17 @@ def run_review_agent(
             {
                 "file_name": file_name,
                 "source_code": source_code,
-            }
+            },
+            config={
+                "run_name": agent_name,
+                "tags": ["trustlayer-ai", "code-review", agent_name],
+                "metadata": {
+                    "agent": agent_name,
+                    "file_name": file_name,
+                    "source_chars": len(source_code),
+                    "model": config.model_name,
+                },
+            },
         )
     except (ValidationError, Exception) as exc:
         logger.exception("%s failed during LLM review.", agent_name)
