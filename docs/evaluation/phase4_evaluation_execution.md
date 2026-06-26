@@ -34,11 +34,11 @@ cp .env.example .env
 Set these values in `.env`:
 
 ```text
-OPENAI_API_KEY=your_openai_key
+OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
 
 LANGSMITH_TRACING=true
-LANGSMITH_API_KEY=your_langsmith_key
+LANGSMITH_API_KEY=
 LANGSMITH_PROJECT=trustlayer-ai-evaluation
 
 TRUSTLAYER_TRACE_SOURCE_CODE=false

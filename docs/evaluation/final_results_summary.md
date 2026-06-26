@@ -33,7 +33,6 @@ TrustLayer AI includes:
 | Failure analysis guide | `docs/evaluation/phase5_failure_analysis.md` |
 | Improvement plan | `docs/evaluation/phase6_improvement_plan.md` |
 | Final evaluation report | `docs/evaluation/phase7_evaluation_report.md` |
-| Loom script | `docs/evaluation/loom_walkthrough_script.md` |
 | LangSmith evidence checklist | `docs/evaluation/langsmith_evidence_checklist.md` |
 
 ## Golden Dataset

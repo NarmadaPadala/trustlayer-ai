@@ -111,7 +111,7 @@ Before final submission, decide whether to:
 1. Present this as the baseline evaluation and improvement roadmap, or
 2. Implement the P0 improvements, re-run the same 40-case dataset, and report before/after results.
 
-Option 2 creates a stronger AI Engineer portfolio story because it demonstrates a full evaluation loop:
+Option 2 creates a stronger GitHub project story because it demonstrates a full evaluation loop:
 
 ```text
 baseline -> failure analysis -> targeted improvements -> re-evaluation

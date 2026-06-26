@@ -8,10 +8,7 @@
 | Golden Dataset Documentation | `docs/evaluation/phase2_golden_dataset_documentation.md` |
 | Golden Dataset Spreadsheet | `docs/evaluation/golden_dataset.csv` |
 | LangSmith Evidence Checklist | `docs/evaluation/langsmith_evidence_checklist.md` |
-| Loom Walkthrough Script | `docs/evaluation/loom_walkthrough_script.md` |
 | Final Results Summary | `docs/evaluation/final_results_summary.md` |
-| Career Readiness Guide | `docs/evaluation/phase8_career_readiness.md` |
-| Career Talking Points | `docs/evaluation/career_talking_points.md` |
 | Architecture Diagram | `docs/evaluation/visuals/trustlayer_architecture_diagram.svg` |
 | Architecture Diagram Mermaid Source | `docs/evaluation/visuals/trustlayer_architecture_diagram.mmd` |
 | Representative LangSmith Trace Screenshot | `docs/evaluation/visuals/langsmith_trace_screenshot_representative.svg` |
@@ -50,7 +47,6 @@
 2. Attach or link `phase7_evaluation_report.md`.
 3. Include `golden_dataset.csv`.
 4. Include `langsmith_evidence_checklist.md` after screenshots are captured.
-5. Use `loom_walkthrough_script.md` for the project demo recording.
 
 ## Short Submission Description
 

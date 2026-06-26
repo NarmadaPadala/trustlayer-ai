@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this checklist to collect visual evidence that TrustLayer AI has observability and monitoring coverage. These screenshots can be used in the final submission, Loom walkthrough, GitHub README, or interview portfolio.
+Use this checklist to collect visual evidence that TrustLayer AI has observability and monitoring coverage. These screenshots can be used in the final submission as evidence documentation.
 
 ## Project Setup
 
@@ -12,15 +12,15 @@ Recommended LangSmith project:
 trustlayer-ai-evaluation
 ```
 
-Required environment variables:
+Local configuration variables:
 
 ```text
 LANGSMITH_TRACING=true
-LANGSMITH_API_KEY=<your LangSmith key>
 LANGSMITH_PROJECT=trustlayer-ai-evaluation
-OPENAI_API_KEY=<your OpenAI key if running LLM-backed review>
 OPENAI_MODEL=gpt-4o-mini
 ```
+
+Do not upload `.env` files or API keys. Store provider credentials locally or in the deployment secret manager.
 
 ## Screenshot Checklist
 
@@ -58,7 +58,7 @@ Why:
 
 ## Evidence Notes Template
 
-Use this text in the final report or Loom notes:
+Use this text in the final report:
 
 ```text
 LangSmith traces were configured for the TrustLayer AI workflow. The root trace captures the full review, while child spans capture the orchestrator, specialist agents, aggregation, report generation, and human-review decision. The traces include privacy-safe input metadata, finding counts, severity counts, risk score, and human-review status. OpenAI-backed runs can additionally capture token usage and estimated cost.

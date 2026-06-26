@@ -33,7 +33,7 @@ Prioritize improvements in this order:
 3. Reduce false positives in edge cases.
 4. Improve actionability and explanation quality.
 5. Improve latency and cost.
-6. Improve report polish and portfolio presentation.
+6. Improve report polish and GitHub presentation.
 
 ## Prompt Improvements
 
@@ -269,7 +269,7 @@ Keep full source-code logging disabled by default. Log source length, hash, line
 
 Expected impact:
 
-- Makes LangSmith evidence safer for portfolio and interview use.
+- Makes LangSmith evidence safer for public GitHub review.
 
 Metric affected:
 
@@ -309,7 +309,7 @@ Expected impact:
 - Easier scoring.
 - Better failure clustering.
 - Clearer reports.
-- Stronger portfolio story around structured AI outputs.
+- Stronger GitHub project story around structured AI outputs.
 
 Metric affected:
 

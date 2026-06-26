@@ -242,4 +242,4 @@ TrustLayer AI now demonstrates a complete AI evaluation workflow:
 - Targeted improvement
 - Re-evaluation against the same benchmark
 
-The project is suitable for GitHub, LinkedIn, and AI Engineer interview discussion because it shows not only agent construction, but also the production evaluation discipline required to make agentic systems reliable.
+The project is suitable for GitHub review because it shows not only agent construction, but also the production evaluation discipline required to make agentic systems reliable.

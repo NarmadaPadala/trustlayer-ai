@@ -38,11 +38,11 @@ cp .env.example .env
 Then fill in:
 
 ```text
-OPENAI_API_KEY=your_openai_key
+OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
 
 LANGSMITH_TRACING=true
-LANGSMITH_API_KEY=your_langsmith_key
+LANGSMITH_API_KEY=
 LANGSMITH_PROJECT=trustlayer-ai-evaluation
 
 TRUSTLAYER_TRACE_SOURCE_CODE=false
@@ -56,7 +56,7 @@ LANGSMITH_ENDPOINT=https://api.smith.langchain.com
 LANGSMITH_WORKSPACE_ID=your_workspace_id
 ```
 
-Use `LANGSMITH_WORKSPACE_ID` if your LangSmith API key is linked to more than one workspace. Use `LANGSMITH_ENDPOINT` if your account is in a non-default region.
+Use `LANGSMITH_WORKSPACE_ID` if your LangSmith account has more than one workspace. Use `LANGSMITH_ENDPOINT` if your account is in a non-default region.
 
 ## What Was Instrumented
 

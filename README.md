@@ -2,7 +2,7 @@
 
 **Production-style multi-agent code review system with AI evaluation, observability, and failure analysis.**
 
-TrustLayer AI reviews Python code before deployment and flags security vulnerabilities, reliability risks, and test coverage gaps. The project is packaged as an AI engineering portfolio case study: agent workflow design, LangSmith-ready tracing, a golden evaluation dataset, baseline measurement, failure analysis, targeted improvement, and re-evaluation.
+TrustLayer AI reviews Python code before deployment and flags security vulnerabilities, reliability risks, and test coverage gaps. The project is packaged as a production-style AI engineering case study: agent workflow design, LangSmith-ready tracing, a golden evaluation dataset, baseline measurement, failure analysis, targeted improvement, and re-evaluation.
 
 ## Portfolio Snapshot
 
@@ -30,7 +30,7 @@ The biggest failure cluster in the baseline run was missed critical security iss
 - [Representative trace screenshot](docs/evaluation/visuals/langsmith_trace_screenshot_representative.svg)
 - [Evaluation results table](docs/evaluation/evaluation_results_table.md)
 
-> The dashboard SVG is a sanitized portfolio summary modeled after LangSmith concepts, not a raw LangSmith export with private workspace identifiers.
+> The dashboard SVG is a sanitized representative summary modeled after LangSmith concepts, not a raw LangSmith export with private workspace identifiers.
 
 ## System Architecture
 
@@ -146,7 +146,7 @@ Copy the example environment file:
 cp .env.example .env
 ```
 
-Set your own keys locally:
+Configure local environment variables:
 
 ```text
 OPENAI_API_KEY=
@@ -188,6 +188,6 @@ This project demonstrates production AI engineering skills beyond prompt buildin
 
 ## Current Limitations
 
-- The included dashboard is a sanitized portfolio artifact, not a raw LangSmith workspace export.
+- The included dashboard is a sanitized representative artifact, not a raw LangSmith workspace export.
 - Precision and LLM-as-Judge scoring are represented as evaluation-ready fields; live judge runs require configured model credentials.
-- The deterministic evaluator is optimized for repeatable portfolio evidence, not a replacement for production monitoring.
+- The deterministic evaluator is optimized for repeatable project evidence, not a replacement for production monitoring.

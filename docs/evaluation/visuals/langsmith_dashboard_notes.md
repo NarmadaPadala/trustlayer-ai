@@ -2,7 +2,7 @@
 
 ## Recommended Portfolio Visual
 
-Use this upgraded dashboard visual for portfolio storytelling:
+Use this upgraded dashboard visual for GitHub storytelling:
 
 ```text
 docs/evaluation/visuals/langsmith_evaluation_dashboard_enterprise.svg
@@ -24,9 +24,9 @@ It is stronger than the original representative trace because it shows:
 
 ## Important Honesty Note
 
-This is still a portfolio dashboard artifact, not a direct exported LangSmith UI screenshot. It intentionally labels the run as deterministic local evaluation and marks LLM-as-judge scores as pending live evaluation.
+This is still a representative dashboard artifact, not a direct exported LangSmith UI screenshot. It intentionally labels the run as deterministic local evaluation and marks LLM-as-judge scores as pending live evaluation.
 
-For final submission or interviews, say:
+For final submission notes, say:
 
 ```text
 This visual summarizes the LangSmith-style observability and evaluation evidence for TrustLayer AI. The actual implementation is instrumented for LangSmith tracing; live account screenshots should be captured separately after running with LANGSMITH_TRACING=true.

@@ -11,7 +11,7 @@ The evaluation package is organized around the AI engineering loop:
 5. Analyze failures.
 6. Improve the system.
 7. Re-run the same benchmark.
-8. Package results for portfolio review and interviews.
+8. Package results for GitHub review and project submission.
 
 ## Fast Review Path
 
@@ -24,7 +24,7 @@ For a 3-5 minute review, start here:
 | [Golden dataset](golden_dataset.csv) | 40 labeled evaluation cases |
 | [Evaluation results table](evaluation_results_table.md) | Before/after results in a readable table |
 | [Latest local run](latest_evaluation_results.csv) | Fresh output from `scripts/evaluate_golden_dataset.py` |
-| [LangSmith-style dashboard](visuals/langsmith_evaluation_dashboard_enterprise.svg) | Portfolio-ready observability summary |
+| [LangSmith-style dashboard](visuals/langsmith_evaluation_dashboard_enterprise.svg) | Production-style observability summary |
 | [Architecture diagram](visuals/trustlayer_architecture_diagram.svg) | Multi-agent workflow overview |
 
 ## Core Evidence
@@ -38,7 +38,6 @@ For a 3-5 minute review, start here:
 | Failure analysis | [phase5_failure_analysis.md](phase5_failure_analysis.md) |
 | Improvement plan | [phase6_improvement_plan.md](phase6_improvement_plan.md) |
 | Submission index | [phase7_final_submission_index.md](phase7_final_submission_index.md) |
-| Career readiness | [phase8_career_readiness.md](phase8_career_readiness.md) |
 
 ## Result Summary
 
